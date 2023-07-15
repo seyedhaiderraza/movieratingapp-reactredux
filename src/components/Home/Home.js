@@ -12,10 +12,9 @@ const Home = () => {
   useEffect(() => {
    
     const fetchmovies = async () => {
-      const response = await movieApi
-        .get(`?apikey=${APIkey}&s=movie&type=movie`)
+      const response = await movieApi.get(`?apikey=${APIkey}&s=movie&type=movie`)
         .catch((err) => {
-          console.log("Error occured in movies api fetch");
+          console.log("Error occured in movies api fetch====", err);
         });
 
         dispatch(addMovies(response.data))

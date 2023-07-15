@@ -1,7 +1,8 @@
+import './MovieListing.scss'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import MovieCard from '../MovieCard/MovieCard'
-import './MovieListing.scss'
+
 
 const MovieListing = () => {
   const movies = useSelector((state)=>state.movies.movies)
@@ -25,7 +26,7 @@ const MovieListing = () => {
   return (
     <div className="movie-wrapper">
     <div className="movie-list">
-      <h2>Movies</h2>
+      <h2 style={{"text-align":"center"}}>Movies</h2>
       <div className="movie-container">
         {renderElement}
       </div>
