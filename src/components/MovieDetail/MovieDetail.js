@@ -2,20 +2,40 @@ import './MovieDetail.scss';
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAsyncSingleMovieOrSingleShowDetail } from '../../features/movies/movieSlice';
-
+import { fetchAsyncSingleMovieOrSingleShowDetail, removeSingleMovieOrShow } from '../../features/movies/movieSlice';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const MovieDetail = () => {
 const {imdbID} = useParams();
 const dispatch = useDispatch();
 const data = useSelector((state)=>state.movies.singleMovieOrShow)
 
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "white",
+  color:"white"
+};
+
 useEffect(()=>{
   dispatch(fetchAsyncSingleMovieOrSingleShowDetail(imdbID))
+  return(
+    ()=>dispatch(removeSingleMovieOrShow())
+    )
 },[dispatch,imdbID])
   return (
+    
     <div className="movie-section">
-     <div className="section-left">
+    {Object.keys(data).length ===0? 
+      (<div> <ClipLoader
+        color={`#ffff`}
+        loading={Object.keys(data).length ===0? true: false}
+        size={150}
+        cssOverride={override}
+        aria-label="Loading Movie info"
+        data-testid="loader"
+      /></div>)
+     :(<><div className="section-left">
         <div className="movie-title">
           {data.Title}
         </div>
@@ -56,6 +76,9 @@ useEffect(()=>{
      <div className="section-right">
       <img src={data.Poster} alt={data.Title} />
      </div>
+     </>)
+    }
+     
     </div>
   )
 }
