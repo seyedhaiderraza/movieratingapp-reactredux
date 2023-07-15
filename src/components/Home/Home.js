@@ -3,7 +3,7 @@ import MovieListing from "../MovieListing/MovieListing";
 import movieApi from "../../common/apis/movieApi";
 import { APIkey } from "../../common/apis/MovieApiKey";
 import { useDispatch } from "react-redux";
-import { addMovies, fetchAllMoviesAsync } from "../../features/movies/movieSlice";
+import { addMovies, fetchAllMoviesAsync, fetchAsyncShows } from "../../features/movies/movieSlice";
 const Home = () => {
 
   const dispatch = useDispatch();
@@ -19,9 +19,10 @@ const Home = () => {
 
         //dispatch(addMovies(response.data))
         dispatch(fetchAllMoviesAsync())
+        dispatch(fetchAsyncShows())
     };
     fetchmovies();
-  }, []);
+  }, [dispatch]);//why dispatch condition given??
 
 
 

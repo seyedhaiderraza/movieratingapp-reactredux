@@ -5,7 +5,7 @@ import {APIkey} from '../../common/apis/MovieApiKey'
 export const fetchAllMoviesAsync = createAsyncThunk(
     "movies/fetchAllMoviesAsync",
     async () => {
-      const movieText = "Harry";
+      const movieText = "flintstones";
       const response = await movieApi.get(
         `?apiKey=${APIkey}&s=${movieText}&type=movie`
       ).catch((err) => {
@@ -17,14 +17,24 @@ export const fetchAllMoviesAsync = createAsyncThunk(
   );
 
 
-
+  export const fetchAsyncShows = createAsyncThunk(
+    "movies/fetchAsyncShows",
+    async () => {
+      const seriesText = "comedy";
+      const response = await movieApi.get(
+        `?apiKey=${APIkey}&s=${seriesText}&type=series`
+      );
+      return response.data;
+    }
+  );
 
 
 
 
 
 const initialState = {
-    movies: {}
+    movies: {},
+    shows:{}
 }
 
 const movieSlice = createSlice({
@@ -49,6 +59,10 @@ const movieSlice = createSlice({
           [fetchAllMoviesAsync.fulfilled]: (state, { payload }) => {
             console.log("Fetched Successfully!");
             return { ...state, movies: payload };
+          },
+          [fetchAsyncShows.fulfilled]: (state, { payload }) => {
+            console.log("Fetched Successfully!");
+            return { ...state, shows: payload };
           }
          
     }
