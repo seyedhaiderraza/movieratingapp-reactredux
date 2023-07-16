@@ -27,15 +27,17 @@ useEffect(()=>{
     
     <div className="movie-section">
     {Object.keys(data).length ===0? 
-      (<div> <ClipLoader
-        color={`#ffff`}
-        loading={Object.keys(data).length ===0? true: false}
-        size={150}
-        cssOverride={override}
-        aria-label="Loading Movie info"
-        data-testid="loader"
-      /></div>)
-     :(<><div className="section-left">
+      (<div> 
+          <ClipLoader
+            color={`#ffff`}
+            loading={Object.keys(data).length ===0? true: false}
+            size={150}
+            cssOverride={override}
+            aria-label="Loading Movie info"
+            data-testid="loader"/>
+      </div>)
+     :(<>
+     <div className="section-left">
         <div className="movie-title">
           {data.Title}
         </div>

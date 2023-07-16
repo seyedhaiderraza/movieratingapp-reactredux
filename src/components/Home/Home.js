@@ -7,7 +7,8 @@ import { addMovies, fetchAllMoviesAsync, fetchAsyncShows } from "../../features/
 const Home = () => {
 
   const dispatch = useDispatch();
-
+  const movieText = "Flintstones";
+  const showText = "Mickey mouse"
 
   useEffect(() => {
    
@@ -18,8 +19,8 @@ const Home = () => {
       //   });
 
         //dispatch(addMovies(response.data))
-        dispatch(fetchAllMoviesAsync())
-        dispatch(fetchAsyncShows())
+        dispatch(fetchAllMoviesAsync(movieText))
+        dispatch(fetchAsyncShows(showText))
     };
     fetchmovies();
   }, [dispatch]);//why dispatch condition given??

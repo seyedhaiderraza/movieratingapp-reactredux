@@ -6,8 +6,15 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Settings } from '../../common/carousel_const'
+import { ClipLoader } from 'react-spinners'
 const MovieListing = () => {
  
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "white",
+  color:"white"
+};
   const movies = useSelector((state)=>state.movies.movies)
   const shows = useSelector((state)=>state.movies.shows)
  
@@ -45,6 +52,17 @@ let renderShows= shows.Response === "True"?
 
   return (
     <div className="movie-wrapper">
+    {movies.Search.length===0? 
+      (<div> 
+          <ClipLoader
+            color={`#ffff`}
+            loading={movies.Search.length===0?  true: false}
+            size={150}
+            cssOverride={override}
+            aria-label="Loading Movie info"
+            data-testid="loader"/>
+      </div>)
+     :(<>
           <div className="movie-list">
                       <h2 style={{"text-align":"center"}}>Movies</h2>
                       <div className="movie-container">
@@ -57,6 +75,8 @@ let renderShows= shows.Response === "True"?
                         {renderShows}
                       </div>
           </div>
+          </>)
+    }
     </div>
   )
 }
