@@ -51,12 +51,12 @@ const movieSlice = createSlice({
     name:"moviesSlice",
     initialState,
     reducers:{
-        //action creators
-        // addMovies: (state, action)=>{
-        //     const {payload} = action
-        //     state.movies = payload;
+     //   action creators
+        addMovies: (state, action)=>{
+            const {payload} = action
+            state.movies = payload;
 
-        // },
+        },
         removeSingleMovieOrShow: (state, action) =>{
           state.singleMovieOrShow={}
         }
