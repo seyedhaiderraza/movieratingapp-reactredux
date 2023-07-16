@@ -2,9 +2,12 @@ import './MovieListing.scss'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import MovieCard from '../MovieCard/MovieCard'
-
-
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { Settings } from '../../common/carousel_const'
 const MovieListing = () => {
+ 
   const movies = useSelector((state)=>state.movies.movies)
   const shows = useSelector((state)=>state.movies.shows)
  
@@ -45,12 +48,12 @@ let renderShows= shows.Response === "True"?
           <div className="movie-list">
                       <h2 style={{"text-align":"center"}}>Movies</h2>
                       <div className="movie-container">
-                        {renderElement}
+                       <Slider {...Settings}> {renderElement} </Slider>
                       </div>
           </div>
           <div className="movie-list">
                       <h2 style={{"text-align":"center"}}>Shows</h2>
-                      <div className="movie-container">
+                      <div className="show-container">
                         {renderShows}
                       </div>
           </div>

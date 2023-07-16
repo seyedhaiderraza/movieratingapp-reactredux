@@ -7,13 +7,21 @@
         font-weight: 400;
         margin-bottom: 10px;
     }
-    .movie-container{
+    .show-container{
         display:grid;
         grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
         grid-gap: 4rem;
         padding: 4rem;
         color: $font-secondary;
     }
-}
 
+//     .movie-container{
+//         display:grid;
+//         grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+//         grid-gap: 4rem;
+//         padding: 4rem;
+//         color: $font-secondary;
+//     }
+// removed after adding react slick carousel for movies
+}
 
